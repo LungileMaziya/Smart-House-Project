@@ -1,0 +1,29 @@
+﻿@inject NavigationManager NavigationManager;
+@inject DialogService DialogService;
+
+<RadzenStack Gap="0rem">
+    <RadzenCard class="bg-warning py-2">
+        <RadzenIcon id="warningIcon" Icon="warning" IconStyle="IconStyle.Danger" class="mt-2 fs-2" />
+        <RadzenLabel Text="You have unsaved changes." class="text-dark fs-4 mb-3" />
+    </RadzenCard>
+    <div class="d-flex flex-row-reverse py-2 m-0">
+        <RadzenButton Click="Stay" Text="Stay" ButtonStyle="ButtonStyle.Light" class="me-5" />
+        <RadzenButton Click="Leave" Text="Leave" ButtonStyle="ButtonStyle.Primary" class="me-3" />
+    </div>
+</RadzenStack>
+
+@code {
+    [Parameter]
+    public LocationChangingContext arg { get; set; }
+
+    public void Stay()
+    {
+        arg.PreventNavigation();
+        DialogService.Close(false);
+    }
+
+    public void Leave()
+    {
+        NavigationManager.NavigateTo(arg.TargetLocation);
+    }
+}

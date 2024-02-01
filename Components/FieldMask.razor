@@ -1,0 +1,105 @@
+﻿@using System.Text.RegularExpressions;
+@using smart_House_Project.Utilities;
+@using smart_House_Project.Models.Enums.v1;
+
+@if(Origin.Equals("Grid",StringComparison.CurrentCultureIgnoreCase))
+{
+    <RadzenTextBox Trim @bind-Value=@displayText Disabled=@Disabled Style=@CustomStyle class="p-0" />
+}
+else
+{
+    <RadzenFormField Text="@Name" class="@(Required ? "required-inner-label" : "")">
+        <RadzenTextBox Trim Name="@TextType" @bind-Value=@displayText Change=@(()=>OnChange(displayText)) Disabled=@Disabled MaxLength="@Maxlength" />
+        @if (TextType.Equals("CellNumber", StringComparison.CurrentCultureIgnoreCase))
+        {
+            <RadzenRegexValidator Component="@TextType" Text="@DisplayErrorMessage" Pattern="^[x0-9_.-]{10}$" Popup=@true Style="position: absolute ;" />
+        }
+        @if (TextType.Equals("PhysicalAddressLine1", StringComparison.CurrentCultureIgnoreCase) || TextType.Equals("LegalRefNo", StringComparison.CurrentCultureIgnoreCase))
+        {
+            <RadzenRequiredValidator Component="@TextType" Text="@DisplayErrorMessage" Popup=true Style="position: absolute;" />
+        }
+        @if (LegalRefNoType == (int)LegalReferenceNumberTypeV1.SAIDNumber)
+        {
+            <RadzenCustomValidator Component="LegalRefNo" Validator="@(() => LegalReferenceNumberExtentions.ValidateID(displayText))" Text="Invalid ID Number" Popup=@true />
+        }
+    </RadzenFormField>
+}
+
+@code{
+
+    [Parameter]
+    public string Name { get; set; }
+
+    [Parameter]
+    public int LegalRefNoType { get; set; } = 0;
+
+    [Parameter]
+    public string CustomStyle { get; set; }
+
+    [Parameter]
+    public string Origin { get; set; }
+
+    [Parameter]
+    public string ReceivedValue { get; set; }
+
+    [Parameter]
+    public string DisplayErrorMessage { get; set; }
+
+    public Action OnChangedFunc { get; set; }
+
+    [Parameter]
+    public int Maxlength { get; set; }
+
+    [Parameter]
+    public string TextType { get; set; }
+
+    [Parameter]
+    public bool Disabled { get; set; }
+
+    [Parameter]
+    public bool Required { get; set; }
+
+    [Parameter]
+    public bool IsAddress { get; set; }
+
+    string displayText;
+
+
+    protected async override void OnInitialized()
+    {
+        displayText = MaskField(ReceivedValue);
+    }
+
+    public void OnChange(string value)
+    {
+        ReceivedValue = value;
+        OnChangedFunc?.Invoke();
+    }
+
+    public void SetValue(string value)
+    {
+        displayText = value;
+    }
+
+    private string MaskField(string Value, int unmaskedLength = 4)
+    {
+        if (IsAddress)
+        {
+            if (string.IsNullOrEmpty(Value) || Value.Length <= unmaskedLength)
+                return Value;
+
+            if (Value.IndexOf(' ') > -1)
+                return new Regex("\\S").Replace(Value.Substring(0, Value.LastIndexOf(" ")), "x") + Value.Substring(Value.LastIndexOf(" "));
+            else
+                return new Regex("\\S").Replace(Value, "x");
+        }
+        else
+        {
+            if (string.IsNullOrEmpty(Value) || Value.Length <= unmaskedLength)
+                return Value;
+
+            return Value.Substring(Value.Length - unmaskedLength, unmaskedLength).PadLeft(Value.Length, 'x');
+        }
+        return "Error";
+    }
+}

@@ -1,0 +1,40 @@
+﻿@inject NavigationManager NavigationManager;
+
+<RadzenPanelMenu Multiple="@false" >
+        <RadzenPanelMenuItem Text="Home" Click="Home" />
+        <RadzenPanelMenuItem Text="House Controls" Click="Controls"/>
+        <RadzenPanelMenuItem Expanded=@true Text="House Sensors Data">
+            <RadzenPanelMenuItem Text="Smoke" Click="Smoke" />
+            <RadzenPanelMenuItem Text="Sound" Click="Sound" />
+            <RadzenPanelMenuItem Text="Temperature" Click="Temperature" />
+        </RadzenPanelMenuItem>
+        <RadzenPanelMenuItem Text="Owner's HUB" Click="Hub"/>
+</RadzenPanelMenu>
+
+@code {
+
+    public void Home()
+    {
+        NavigationManager.NavigateTo("./");
+    }
+    public void Controls()
+    {
+        NavigationManager.NavigateTo("./Controls");
+    }
+    public void Smoke()
+    {
+        NavigationManager.NavigateTo("./Smoke");
+    }
+    public void Sound()
+    {
+        NavigationManager.NavigateTo("./Sound");
+    }
+    public void Temperature()
+    {
+        NavigationManager.NavigateTo("./Temperature");
+    }
+    public void Hub()
+    {
+        NavigationManager.NavigateTo("./OwnersHub");
+    }
+}

@@ -1,0 +1,294 @@
+﻿@page "/OwnersHub"
+
+<div class="policy-data">
+    <RadzenCard Style="--rz-card-background-color:green;color:white;" class="py-2">
+        <RadzenRow>
+            <div class="col-sm-3 text-center">
+                House Details
+            </div>
+            <div class="col-sm-6 text-center">
+                Owner Details
+            </div>
+            <div class="col-sm-3 text-center">
+                Maintenance Details
+            </div>
+        </RadzenRow>
+    </RadzenCard>
+    <RadzenPanel AllowCollapse="false" Class="rz-mx-auto member-details">
+        <ChildContent>
+            @*<RadzenTemplateForm class="member-details">*@
+                <div class="row col-12">
+                    <div class="col-3">
+                        <div class="row col-12">
+                            <RadzenStack Gap="1rem" class="rz-p-sm-4 text-black">
+                                <RadzenFormField Text="House Location">
+                                    <RadzenTextBox Disabled="true" />
+                                </RadzenFormField>
+                                <RadzenFormField Text="House Number">
+                                    <RadzenTextBox Disabled="true" />
+                                </RadzenFormField>
+                                <RadzenFormField Text="Number of Occupant">
+                                    <RadzenNumeric ShowUpDown="false" Disabled="true" TValue="int" />
+                                </RadzenFormField>
+                                <RadzenFormField Text="Date Bought">
+                                </RadzenFormField>
+                                <RadzenFormField Text="Is Insured">
+                                </RadzenFormField>
+                                <RadzenFormField Text="Is Paid Off">
+                                </RadzenFormField>
+                                <RadzenFormField Text="Security Info">
+                                </RadzenFormField>
+                                <RadzenFormField Text="Sales Venue">
+                                    <RadzenTextBox Disabled="true" />
+                                </RadzenFormField>
+                                <RadzenFormField Text="Sales Person">
+                                    <RadzenTextBox Disabled="true" />
+                                </RadzenFormField>
+                            </RadzenStack>
+                        </div>
+                    </div>
+                    <div class="col-6 border-end border-start border-3">
+                        <div class="row col-12">
+                            <RadzenStack Gap="10px" class="text-black col-sm-6 mt-3">
+                                <RadzenFormField Text="Title" class="@(true ? "required" : "")">
+                                    <ChildContent>
+                                    </ChildContent>
+                                    <Helper>
+                                        <RadzenRequiredValidator Component="Title" Text="Title is required" Popup=true Style="position: absolute ;" />
+                                    </Helper>
+                                </RadzenFormField>
+                            </RadzenStack>
+                        </div>
+                        <div class="row col-12">
+                            <RadzenStack Gap="10px" class="text-black col-sm-6 mt-3">
+                                <RadzenFormField Text="First Name" class="@(true ? "required-inner-label" : "")">
+                                    <ChildContent>
+                                        <RadzenTextBox Trim Name="FirstName" />
+                                    </ChildContent>
+                                    <Helper>
+                                        <RadzenRequiredValidator Component="FirstName" Text="FirstName is required" Popup=true Style="position: absolute ;" />
+                                    </Helper>
+                                </RadzenFormField>
+                            </RadzenStack>
+                            <RadzenStack Gap="10px" class="text-black col-sm-6 mt-3">
+                                <RadzenFormField Text="Surname" class="@(true ? "required-inner-label" : "")">
+                                    <ChildContent>
+                                        <RadzenTextBox Trim Name="Surname" />
+                                    </ChildContent>
+                                    <Helper>
+                                        <RadzenRequiredValidator Component="Surname" Text="Surname is required" Popup=true Style="position: absolute ;" />
+                                    </Helper>
+                                </RadzenFormField>
+                            </RadzenStack>
+                        </div>
+                        <div class="row col-12">
+                            <RadzenStack Gap="10px" class="text-black col-sm-6 mt-3">
+                                <RadzenFormField Text="ID Number" class="@(true ? "required-inner-label" : "")">
+                                    <ChildContent>
+                                        <RadzenTextBox MaxLength=13 Name="LegalRefNo" Disabled="true" />
+                                    </ChildContent>
+                                </RadzenFormField>
+                            </RadzenStack>
+                            <RadzenStack Gap="10px" class="text-black col-sm-6 mt-3">
+                                <RadzenFormField Text="Date of Birth" class="@(true ? "required-inner-label" : "")">
+                                    <ChildContent>
+                                    </ChildContent>
+                                </RadzenFormField>
+                            </RadzenStack>
+                        </div>
+
+                        <div class="row col-12">
+                            <RadzenStack Gap="5px" class="text-black col-sm-6 mt-3">
+                                <RadzenFormField Text="Fax number">
+                                    <ChildContent>
+                                        <RadzenTextBox MaxLength=10 Name="FaxNumber"  />
+                                    </ChildContent>
+                                    <Helper>
+                                        <RadzenRegexValidator Component="FaxNumber" Text="Fax Number invalid" Pattern="^[x0-9_.-]{10}$" Popup=@true Style="position: absolute ;" />
+                                    </Helper>
+                                </RadzenFormField>
+                            </RadzenStack>
+                            <RadzenStack Gap="5px" class="text-black col-sm-6 mt-3">
+                                <RadzenFormField Text="Home number">
+                                    <ChildContent>
+                                        <RadzenTextBox MaxLength=10 Name="HomeNumber"  />
+                                    </ChildContent>
+                                    <Helper>
+                                        <RadzenRegexValidator Component="HomeNumber" Text="Home Number invalid" Pattern="^[x0-9_.-]{10}$" Popup=@true Style="position: absolute ;" />
+                                    </Helper>
+                                </RadzenFormField>
+                            </RadzenStack>
+                        </div>
+
+                        <div class="row col-12">
+                            <RadzenStack Gap="5px" class="text-black col-sm-6 mt-3">
+                                <RadzenFormField Text="Cell Number" class="@(true ? "required-inner-label" : "")">
+                                    <ChildContent>
+                                        <RadzenTextBox MaxLength=10 Name="CellNumber" />
+                                    </ChildContent>
+                                    <Helper>
+                                        <RadzenRegexValidator Component="CellNumber" Text="Cell Number invalid" Pattern="^[x0-9_.-]{10}$" Popup=@true Style="position: absolute ;" />
+                                    </Helper>
+                                </RadzenFormField>
+                            </RadzenStack>
+                            <RadzenStack Gap="5px" class="text-black col-sm-6 mt-3">
+                                <RadzenFormField Text="Email Address" class="@(true ? "required-inner-label" : "")">
+                                    <ChildContent>
+                                        <RadzenTextBox Trim Name="Email" />
+                                    </ChildContent>
+                                    <Helper>
+                                        <RadzenEmailValidator Text="Email address invalid" Component="Email" Popup=@true Style="position: absolute ;" />
+                                        @if (true)
+                                        {
+                                            <RadzenRequiredValidator Component="Email" Text="Email address is required" Popup=true Style="position: absolute;" />
+                                        }
+                                    </Helper>
+                                </RadzenFormField>
+                            </RadzenStack>
+                        </div>
+                        <div class="row col-12">
+                            <div class="col-sm-6">
+                                <RadzenLabel class="address-heading" Text="Physical Address:" />
+                            </div>
+                            <div class="col-sm-6">
+                                <RadzenLabel class="address-heading" Text="Postal Address:" />
+                            </div>
+                        </div>
+                        <div class="row col-12">
+                            <div class="col-sm-6">
+                                <RadzenFormField class="@(true ? "required-inner-label" : "")" Text="Address 1">
+                                    <RadzenTextBox Trim Name="PhysicalAddress1"  />
+                                    <RadzenRequiredValidator Component="PhysicalAddress1" Text="Address is required" Popup=true Style="position: absolute; margin-top: 31px;" />
+                                </RadzenFormField>
+                            </div>
+                            <div class="col-sm-6">
+                                <RadzenFormField Text="Address 1">
+                                    <RadzenTextBox Trim Name="PostalAddress1"  />
+                                </RadzenFormField>
+                            </div>
+                        </div>
+                        <div class="row col-12 mt-3">
+                            <div class="col-sm-6">
+                                <RadzenFormField Text="Address 2">
+                                    <RadzenTextBox Trim />
+                                </RadzenFormField>
+                            </div>
+                            <div class="col-sm-6">
+                                <RadzenFormField Text="Address 2">
+                                    <RadzenTextBox Trim  />
+                                </RadzenFormField>
+                            </div>
+                        </div>
+                        <div class="row col-12 mt-3">
+                            <div class="col-sm-6">
+                                <RadzenFormField class="@(true ? "required-inner-label" : "")" Text="Suburb">
+                                    <RadzenTextBox Trim Name="PhysicalSuburb" />
+                                    <RadzenRequiredValidator Component="PhysicalSuburb" Text="Suburb is required" Popup=true Style="position: absolute; margin-top: 31px;" />
+                                </RadzenFormField>
+                            </div>
+                            <div class="col-sm-6">
+                                <RadzenFormField Text="Suburb">
+                                    <RadzenTextBox Trim Name="PostalSuburb" />
+                                </RadzenFormField>
+                            </div>
+                        </div>
+                        <div class="row col-12 mt-3">
+                            <div class="col-sm-6">
+                                <RadzenFormField class="@(true ? "required-inner-label" : "")" Text="City/Town">
+                                    <RadzenTextBox Trim Name="PhysicalTownCity" />
+                                    <RadzenRequiredValidator Component="PhysicalTownCity" Text="City is required" Popup=true Style="position: absolute; margin-top: 31px;" />
+                                </RadzenFormField>
+                            </div>
+                            <div class="col-sm-6">
+                                <RadzenFormField Text="City/Town">
+                                    <RadzenTextBox Trim Name="PostalTownCity" />
+                                </RadzenFormField>
+                            </div>
+                        </div>
+                        <div class="row col-12 mt-3">
+                            <div class="col-sm-6">
+                                <RadzenFormField class="@(true ? "required-inner-label" : "")" Text="Postal Code">
+                                    <RadzenTextBox MaxLength=4 Name="PhysicalPostalCode" />
+                                    <RadzenRegexValidator Component="PhysicalPostalCode" Text="Postal code invalid" Pattern="\d{4}" Popup=@true Style="position: absolute; margin-top: 31px;" />
+                                    <RadzenRequiredValidator Component="PhysicalPostalCode" Text="Postal code is required" Popup=true Style="position: absolute; margin-top: 31px;" />
+                                </RadzenFormField>
+                            </div>
+                            <div class="col-sm-6">
+                                <RadzenFormField Text="Postal Code">
+                                    <RadzenTextBox MaxLength=4 Name="PostalPostalCode" />
+                                    @if (true)
+                                    {
+                                        <RadzenRegexValidator Component="PostalPostalCode" Text="Postal code invalid" Pattern="\d{4}" Popup=@true Style="position: absolute;  margin-top: 31px;" />
+                                    }
+                                </RadzenFormField>
+                            </div>
+                        </div>
+                        <div class="col-12 ms-3">
+                            @if (true)
+                            {
+                                <RadzenCheckBox  Name="PostalAddressSameAsPhysical" TValue="bool" />
+                                <RadzenLabel class="mt-1" Text="Postal same as physical" />
+                            }
+                        </div>
+                        <div class="row col-12 mt-2">
+                            <div class="col-sm-6">
+                                <RadzenFormField Text="Gender">
+                                    <ChildContent>
+                                    </ChildContent>
+                                </RadzenFormField>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <RadzenStack Gap="1rem" class="rz-p-sm-4 text-black col-sm-12">
+                            <RadzenFormField Text="Billing Date">
+                                <ChildContent>
+                                </ChildContent>
+                            </RadzenFormField>
+                        <RadzenFormField Text="Last Billing Date">
+                                <ChildContent>
+                                </ChildContent>
+                            </RadzenFormField>
+                            <RadzenFormField Text="Next Billing Date">
+                                <ChildContent>
+                                </ChildContent>
+                            </RadzenFormField>
+                            <RadzenFormField Text="Premium Amount">
+                                <ChildContent>
+                                    <RadzenNumeric ShowUpDown="false" Disabled="@true" TValue="decimal?" />
+                                </ChildContent>
+                            </RadzenFormField>
+                            <RadzenFormField Text="Premium Count">
+                                <ChildContent>
+                                    <RadzenNumeric ShowUpDown="false" Disabled="@true" TValue="int?" />
+                                </ChildContent>
+                            </RadzenFormField>
+                            <RadzenFormField Text="Payment Frequency">
+                                <ChildContent>
+                                    <RadzenTextBox ShowUpDown="false" Disabled="@true"  />
+                                </ChildContent>
+                            </RadzenFormField>
+                        </RadzenStack>
+                    </div>
+                </div>
+                <RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.End" Gap="0" class="mb-2 me-5 mt-2">
+                    <RadzenButton Size="ButtonSize.Small" Text="Cancel" ButtonStyle="ButtonStyle.Danger" class="me-2" />
+                    @if (true)
+                    {
+                        <RadzenButton Size="ButtonSize.Small" Text="Edit" ButtonStyle="ButtonStyle.Primary" class="py-1 px-6" />
+                    }
+                    else
+                    {
+                        <RadzenButton Size="ButtonSize.Small" Text="Save" ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" class="py-1 px-6" />
+                    }
+
+                </RadzenStack>
+            @*</RadzenTemplateForm>*@
+        </ChildContent>
+    </RadzenPanel>
+</div>
+
+
+@code {
+
+}

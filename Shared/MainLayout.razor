@@ -1,0 +1,63 @@
+﻿@inherits LayoutComponentBase
+@inject DialogService DialogService;
+@inject NavigationManager NavigationManager;
+@implements IDisposable;
+@using smart_House_Project.Components;
+@using smart_House_Project.Pages;
+
+
+<PageTitle>Smart House</PageTitle>
+
+<RadzenLayout>
+    <div class="row col-12">
+        <div class="col-sm-2 ps-4 py-2 pe-0 text-black fs-4">
+            <RadzenLabel Text="Smart House" class="text-black fs-4" />
+            <RadzenButton Icon="@(navMenuColapse ? "chevron_right" : "chevron_left")" Click="toggleNavMenu" class="border-0" />
+        </div>
+        <div class="col-sm-10 text-center text-black fw-bolder fs-5 bg-warning py-2 px-0 bo">
+            <p>This is a monitoring website for a smart house demo project / Home Automation project</p>
+        </div>
+    </div>
+    <div class="row col-12">
+        <div class="@(navMenuColapse ? "d-none" : "col-sm-2 pe-0 ps-2")">
+            <NavMenu/>
+        </div>
+        <div class="@(navMenuColapse ? "col-sm-12 w-100 border-5" : "col-sm-10 ps-0 border-5")">
+            @Body
+        </div>
+    </div>
+</RadzenLayout>
+<RadzenFooter Style="text-align:right;position:relative;">
+    &copy;@(DateTime.Now.Year) Smart House v1.0.0. All rights reserved.
+</RadzenFooter>
+
+@code{
+    bool navMenuColapse = false;
+    private IDisposable disposable;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            disposable = NavigationManager.RegisterLocationChangingHandler(LocationChangingHandler);
+        }
+    }
+
+    private async ValueTask LocationChangingHandler(LocationChangingContext arg)
+    {
+        await DialogService.OpenAsync<ClickAwayNotification>("Are you sure you want to leave the page?",
+        new Dictionary<string, object>() { { "arg", arg } },
+        new DialogOptions() { Width = "550px", Height = "220px" });
+    }
+
+    public void Dispose()
+    {
+        disposable?.Dispose();
+    }
+
+    public void toggleNavMenu()
+    {
+        navMenuColapse = !navMenuColapse;
+    }
+}
+

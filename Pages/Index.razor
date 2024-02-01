@@ -1,0 +1,140 @@
+﻿@page "/"
+
+<div class="row col-12 pt-3">
+    <div class="col-sm-3">
+        <RadzenFieldset>
+            <HeaderTemplate>
+                <RadzenBadge Shade="Shade.Dark" Text="Lights" Style="font-size:medium" />
+            </HeaderTemplate>
+            <ChildContent>
+                <div class="row col-12 py-3">
+                    <div class="col-sm-6">
+                        <RadzenLabel Text="Kitchen Light" />
+                    </div>
+                    <div class="col-sm-6">
+                        <RadzenIcon Icon="lightbulb" IconStyle="IconStyle.Light" />
+                    </div>
+                </div>
+                <div class="row col-12 py-3">
+                    <div class="col-sm-6">
+                        <RadzenLabel Text="Bedroom Light" />
+                    </div>
+                    <div class="col-sm-6">
+                        <RadzenIcon Icon="lightbulb" IconStyle="IconStyle.Success" />
+                    </div>
+                </div>
+                <div class="row col-12 py-3">
+                    <div class="col-sm-6">
+                        <RadzenLabel Text="Garage Light" />
+                    </div>
+                    <div class="col-sm-6">
+                        <RadzenIcon Icon="lightbulb" IconStyle="IconStyle.Light" />
+                    </div>
+                </div>
+                <div class="row col-12 py-3">
+                    <div class="col-sm-6">
+                        <RadzenLabel Text="Outside Lights" />
+                    </div>
+                    <div class="col-sm-6">
+                        <RadzenIcon Icon="lightbulb" IconStyle="IconStyle.Success" />
+                    </div>
+                </div>
+            </ChildContent>
+        </RadzenFieldset>
+    </div>
+    <div class="col-sm-6">
+        <RadzenFieldset>
+            <HeaderTemplate>
+                <RadzenBadge Shade="Shade.Dark" Text="Sensors" Style="font-size:medium" />
+            </HeaderTemplate>
+            <ChildContent>
+                <div class="row col-12">
+                    <div class="col-sm-6">
+                        <RadzenLabel Text="Temperature" class="text-end" />
+                        <RadzenRadialGauge Style="height: 300px;">
+                            <RadzenRadialGaugeScale StartAngle="-150" EndAngle="150" Step="10" Min="-10" Max="60" TickPosition=0>
+                                <RadzenRadialGaugeScalePointer Value=15 Length="0.6" ShowValue=true>
+                                    <Template Context="pointer">
+                                        <h6 class="pt-5">
+                                            @pointer.Value <sup>&#8451;</sup>
+                                        </h6>
+                                    </Template>
+                                </RadzenRadialGaugeScalePointer>
+                                <RadzenRadialGaugeScaleRange From="-10" To="20" Fill="blue" />
+                                <RadzenRadialGaugeScaleRange From="20" To="30" Fill="green" />
+                                <RadzenRadialGaugeScaleRange From="30" To="60" Fill="red" />
+                            </RadzenRadialGaugeScale>
+                        </RadzenRadialGauge>
+                    </div>
+                    <div class="col-sm-6">
+                        <RadzenLabel Text="Smoke levels" class="text-center" />
+                        <RadzenRadialGauge Style="height: 300px;">
+                            <RadzenRadialGaugeScale StartAngle="-150" EndAngle="150" Step="50" Min="10" Max="560" TickPosition=0>
+                                <RadzenRadialGaugeScalePointer Value=10 Length="0.6" ShowValue=true>
+                                    <Template Context="pointer">
+                                        <h6 class="pt-5">
+                                            @pointer.Value <sup>HSU</sup>
+                                        </h6>
+                                    </Template>
+                                </RadzenRadialGaugeScalePointer>
+                                <RadzenRadialGaugeScaleRange From="10" To="300" Fill="green" />
+                                <RadzenRadialGaugeScaleRange From="300" To="560" Fill="red" />
+                            </RadzenRadialGaugeScale>
+                        </RadzenRadialGauge>
+                    </div>
+                </div>
+                <div class="row col-12">
+                    <RadzenArcGauge Style="width: 100%; height: 250px;">
+                        <RadzenArcGaugeScale Step="20" Min="0" Max="260" MinorStep="2" Radius="1.5" TickPosition=0 Y="0.9" Margin="0">
+                            <RadzenArcGaugeScaleValue Value=100 ShowValue=@true>
+                                <Template Context="pointer">
+                                    <h4>
+                                        @pointer.Value <sup>Dec</sup>
+                                    </h4>
+                                </Template>
+                            </RadzenArcGaugeScaleValue>
+                        </RadzenArcGaugeScale>
+                    </RadzenArcGauge>
+                    <RadzenLabel Text="Sound" class="text-center" />
+                </div>
+               
+            </ChildContent>
+        </RadzenFieldset>
+    </div>
+    <div class="col-sm-3">
+        <RadzenFieldset>
+            <HeaderTemplate>
+                <RadzenBadge Shade="Shade.Dark" Text="House Info" Style="font-size:medium" />
+            </HeaderTemplate>
+            <ChildContent>
+                <RadzenFormField Text="Home owner" class="py-2">
+                    <RadzenTextBox/>
+                </RadzenFormField>
+                <RadzenFormField Text="Home Serial Number" class="py-2">
+                    <RadzenTextBox/>
+                </RadzenFormField>
+                <RadzenFormField Text="Cellphone Number" class="py-2">
+                    <RadzenTextBox/>
+                </RadzenFormField>
+                <RadzenFormField Text="Email Address" class="py-2">
+                    <RadzenTextBox/>
+                </RadzenFormField>
+                <RadzenFormField Text="House Plan" class="py-2">
+                    <RadzenTextBox/>
+                </RadzenFormField>
+                <RadzenFormField Text="Current Electricity Bill" class="py-2">
+                    <RadzenTextBox/>
+                </RadzenFormField>
+                <RadzenFormField Text="Scheduled Maintainance Date" class="py-2">
+                    <RadzenTextBox/>
+                </RadzenFormField>
+                <RadzenFormField Text="Alternate Phone Number" class="py-2">
+                    <RadzenTextBox/>
+                </RadzenFormField>
+                <RadzenFormField Text="Installer Name" class="py-2">
+                    <RadzenTextBox/>
+                </RadzenFormField>
+            </ChildContent>
+        </RadzenFieldset>
+    </div>
+</div>

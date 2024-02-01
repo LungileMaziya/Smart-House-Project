@@ -1,0 +1,18 @@
+﻿@page "/Temperature"
+
+<RadzenDataGrid TItem="string">
+    <EmptyTemplate>
+        <p style="color: lightgrey; font-size: 24px; text-align: center; margin: 2rem;">No records to display.</p>
+    </EmptyTemplate>
+    <Columns>
+        <RadzenDataGridColumn TItem="string" Property="EmployeeID" Title="ID" Width="50px" TextAlign="TextAlign.Center" />
+        <RadzenDataGridColumn TItem="string" Property="FirstName" Title="Temperature Level" />
+        <RadzenDataGridColumn TItem="string" Property="FirstName" Title="Humidity Level" />
+        <RadzenDataGridColumn TItem="string" Property="LastName" Title="Date" />
+    </Columns>
+</RadzenDataGrid>
+
+
+@code {
+    string emptyText = "No Items to display!";
+}
